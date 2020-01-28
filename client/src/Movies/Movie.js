@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import MovieCard from './MovieCard';
-import SavedList from './SavedList';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
@@ -27,8 +26,7 @@ const Movie = (props) => {
   // Uncomment this only when you have moved on to the stretch goals
   const saveMovie = () => {
     const addToSavedList = props.addToSavedList;
-    if (!props.savedList.includes(movie)) {
-    addToSavedList(movie) }
+    addToSavedList(movie)
   }
 
   if (!movie) {
@@ -39,7 +37,7 @@ const Movie = (props) => {
   return (
     <div className="save-wrapper">
       <MovieCard movie={movie}></MovieCard>
-      <div className="save-button" onClick={saveMovie}>Save</div>
+      {props.savedList.includes(movie) ? <></>:<div className="save-button" onClick={saveMovie}>Save</div>}
     </div>
   );
 }
